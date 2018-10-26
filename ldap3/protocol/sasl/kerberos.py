@@ -83,7 +83,7 @@ def sasl_gssapi(connection, controls):
     if raw_creds is not None:
         creds = gssapi.Credentials(base=raw_creds, usage='initiate')
     else:
-        creds = gssapi.Credentials(name=gssapi.Name(connection.user), usage='initiate') if connection.user else None
+        creds = gssapi.Credentials(name=gssapi.Name(connection.user), usage='initiate', store=connection.store) if connection.user els
     ctx = gssapi.SecurityContext(name=target_name, mech=gssapi.MechType.kerberos, creds=creds)
     in_token = None
     try:
